@@ -9,10 +9,15 @@
         v-model="place" id="place" />
       <input class="outline-none rounded-md px-4 py-1 w-full bg-gray-200 " type="datetime-local" name="datetime"
         v-model="dateTime" id="datetime" />
-      <button @click="addTask"
-        class="bg-green-400 text-center w-fit px-4 py-1 rounded-md relative left-1/2 -translate-x-1/2 cursor-pointer">
-        <faIcon icon="fa-solid fa-save" class="me-2" />Save
-      </button>
+      <div class="flex justify-around">
+        <button @click="cancelTask" class="bg-red-400 text-center w-fit px-4 py-1 rounded-md cursor-pointer">
+          <faIcon icon="fa-solid fa-cancel" class="me-2" />Cancel
+        </button>
+        <button @click="addTask" class="bg-green-300 text-center w-fit px-4 py-1 rounded-md  cursor-pointer">
+          <faIcon icon="fa-solid fa-save" class="me-2" />Save
+        </button>
+
+      </div>
     </div>
   </div>
 </template>
@@ -31,12 +36,19 @@ import type { Task } from '@/interfaces/task.interface';
 
 dayjs.extend(isSameOrBefore);
 
-const emit = defineEmits(['addNewTask'])
+const emit = defineEmits(['addNewTask', 'cancelNewTask'])
 
 const taskName = ref()
 const dateTime = ref()
 const place = ref()
 
+
+const cancelTask = () => {
+  taskName.value = ''
+  dateTime.value = null
+  place.value = ''
+  emit('cancelNewTask', false)
+}
 
 const addTask = () => {
 

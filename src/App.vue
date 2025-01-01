@@ -21,6 +21,10 @@ const toggleNewTask = (n: boolean) => {
   showNewTask.value = n
 }
 
+const cancelNewtask = (showForm: boolean) => {
+  toggleNewTask(showForm)
+}
+
 const addNewTask = (task: Task, showForm: boolean) => {
 
   if (!tasks.value) {
@@ -80,6 +84,13 @@ const filterTask = (filtro: string) => {
   filtroState.value = filtro
 }
 
+const deleteFinished = () => {
+  const withoutFinished = tasks.value.filter(el => el.status != 'finished')
+  localStorage.setItem('tasks', JSON.stringify(withoutFinished))
+  tasks.value = withoutFinished
+  filtroState.value = 'all'
+}
+
 onMounted(() => {
   getDataStorage()
 })
@@ -89,21 +100,26 @@ onMounted(() => {
 <template>
   <main class="bg-gray-200 ">
 
-    <div class="w-full ">
-      <h1 class="text-center w- bg-gray-50 p-5 font-bold text-3xl">todo App</h1>
+    <div class="w-full lg:w-4/12">
+      <h1 class="text-center w- bg-gray-50 p-5 font-bold text-3xl lg:mt-4 lg:rounded-lg">todo App</h1>
 
       <!-- header task -->
       <HeaderTaskComponent @show-new-task="toggleNewTask" :enable="showNewTask" />
 
+
       <!-- new Task -->
-      <NewTaskComponent v-if="showNewTask" @add-new-task="addNewTask" />
+      <NewTaskComponent v-if="showNewTask" @add-new-task="addNewTask" @cancel-new-task="cancelNewtask" />
 
 
       <!-- Status task -->
-      <StatusComponent :tasks="tasks" :filtro="filtroState" @filtrar-task="filterTask" />
+      <StatusComponent :tasks="tasks" :filtro="filtroState" @filtrar-task="filterTask"
+        @delete-finished="deleteFinished" />
+
+
 
       <!-- Lista de tareas -->
-      <TaskComponent :tasks="tasks" v-if="tasks.length" @change-status="changeStatus" @delete-task="deleteTask" />
+      <TaskComponent :tasks="tasks" :filtro="filtroState" v-if="tasks.length" @change-status="changeStatus"
+        @delete-task="deleteTask" />
 
       <!-- No tasks -->
       <NoTaskComponent v-if="!tasks.length" />

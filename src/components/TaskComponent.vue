@@ -1,5 +1,5 @@
 <template>
-  <ul class="px-3" v-for="task in tasks" :key="task.id">
+  <ul class="px-3" v-for="task in taskFilter" :key="task.id">
     <li class="p-4 my-6 w-full h-34 rounded-lg bg-gray-50 flex flex-col justify-between ">
       <div class="flex justify-between items-center">
         <div class="flex flex-col">
@@ -26,6 +26,7 @@
 
 
 <script setup lang="ts">
+import { computed } from 'vue';
 import type { Task } from '@/interfaces/task.interface';
 
 import dayjs from 'dayjs';
@@ -40,11 +41,20 @@ dayjs.extend(LocalizedFormat)
 dayjs.extend(isBetween);
 dayjs.locale('es')
 
+const taskFilter = computed(()=>{
+  if(props.filtro != 'all'){
+    return props.tasks.filter(el=> el.status === props.filtro)
+  }
+
+  return props.tasks
+})
+
 interface Props {
   tasks: Task[]
+  filtro: string
 }
 
-defineProps<Props>()
+const props = defineProps<Props>()
 
 const emit = defineEmits(['changeStatus', 'deleteTask'])
 
