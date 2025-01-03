@@ -56,11 +56,6 @@ const emit = defineEmits<{
 }>()
 
 
-
-const deleteFinished = () => {
-  emit('deleteFinished')
-}
-
 const taskPending = () => {
   const pendingTasks = computed(() => {
     return props.tasks.filter(task => task.status === 'pending')
@@ -77,6 +72,9 @@ const taskFinished = () => {
   return pendingTasks.value.length
 }
 
+const deleteFinished = () => {
+  emit('deleteFinished')
+}
 
 const filtrarTasks = (filtro: string) => {
   emit('filtrarTask', filtro)
