@@ -50,7 +50,11 @@ interface Props {
 
 const props = defineProps<Props>()
 
-const emit = defineEmits(['filtrarTask', 'deleteFinished'])
+const emit = defineEmits<{
+  deleteFinished:[],
+  filtrarTask:[filtro:string]
+}>()
+
 
 
 const deleteFinished = () => {

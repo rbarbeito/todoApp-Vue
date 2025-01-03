@@ -108,7 +108,7 @@ onMounted(() => {
 
 
       <!-- new Task -->
-      <NewTaskComponent v-if="showNewTask" @add-new-task="addNewTask" @cancel-new-task="cancelNewtask" />
+      <NewTaskComponent v-show="showNewTask" @add-new-task="addNewTask" @cancel-new-task="cancelNewtask" />
 
 
       <!-- Status task -->
@@ -118,7 +118,7 @@ onMounted(() => {
 
 
       <!-- Lista de tareas -->
-      <TaskComponent :tasks="tasks" :filtro="filtroState" v-if="tasks.length" @change-status="changeStatus"
+      <TaskComponent :tasks="tasks" :filtro="filtroState" v-show="tasks.length" @change-status="changeStatus"
         @delete-task="deleteTask" />
 
       <!-- No tasks -->

@@ -56,7 +56,10 @@ interface Props {
 
 const props = defineProps<Props>()
 
-const emit = defineEmits(['changeStatus', 'deleteTask'])
+const emit = defineEmits<{
+  changeStatus:[id:string],
+  deleteTask:[id:string]
+}>()
 
 const formatDate = (fecha: string) => {
 
