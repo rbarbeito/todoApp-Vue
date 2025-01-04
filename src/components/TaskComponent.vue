@@ -1,5 +1,5 @@
 <template>
-  <ul class="px-3  mt-1 lg:h-4/6 lg:overflow-y-scroll" >
+  <ul class="px-3  mt-1 lg:h-4/6 lg:overflow-y-auto" >
     <li class="p-4 my-6 w-full h-34 rounded-lg bg-gray-50 flex flex-col justify-between " v-for="task in taskFilter" :key="task.id">
       <div class="flex justify-between items-center">
         <div class="flex flex-col">
