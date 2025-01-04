@@ -93,6 +93,10 @@ const addTask = () => {
     status: 'pending',
   };
 
+  taskName.value=''
+  dateTime.value=''
+  place.value =''
+
   emit('addNewTask', task, false);
 };
 </script>

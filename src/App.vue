@@ -52,6 +52,7 @@ const {
         v-show="tasks.length"
         @change-status="changeStatus"
         @delete-task="deleteTask"
+        
       />
 
       <!-- No tasks -->
@@ -64,7 +65,8 @@ const {
 
 main
   width: 100vw
-  min-height: 100vh
+  height: 100vh
   display: flex
   justify-content: center
+  overflow: hidden
 </style>

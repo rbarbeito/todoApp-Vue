@@ -1,6 +1,6 @@
 <template>
-  <ul class="px-3" v-for="task in taskFilter" :key="task.id">
-    <li class="p-4 my-6 w-full h-34 rounded-lg bg-gray-50 flex flex-col justify-between ">
+  <ul class="px-3  mt-1 lg:h-4/6 lg:overflow-y-scroll" >
+    <li class="p-4 my-6 w-full h-34 rounded-lg bg-gray-50 flex flex-col justify-between " v-for="task in taskFilter" :key="task.id">
       <div class="flex justify-between items-center">
         <div class="flex flex-col">
           <h4 class="font-bold">{{ task.task }}</h4>
