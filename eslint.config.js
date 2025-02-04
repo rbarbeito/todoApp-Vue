@@ -16,4 +16,6 @@ export default [
   ...pluginVue.configs['flat/essential'],
   ...vueTsEslintConfig(),
   skipFormatting,
-]
+
+
+];

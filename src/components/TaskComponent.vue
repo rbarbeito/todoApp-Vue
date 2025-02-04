@@ -1,5 +1,5 @@
 <template>
-  <ul class="px-3 mt-1 lg:h-4/6 lg:overflow-y-auto">
+  <ul class="px-3 mt-3 lg:h-4/6 lg:overflow-y-auto">
     <li
       class="p-4 my-6 w-full h-34 rounded-lg bg-gray-50 flex flex-col justify-between"
       v-for="task in taskFilter"
@@ -39,19 +39,48 @@
 </template>
 
 <script setup lang="ts">
-import { showTask } from '@/composables/showTask';
+import type { Task } from '@/interfaces/task.interface';
+import { computed } from 'vue';
+
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import LocalizedFormat from 'dayjs/plugin/localizedFormat'
-import isBetween from 'dayjs/plugin/isBetween'
-import 'dayjs/locale/es'
-
+import LocalizedFormat from 'dayjs/plugin/localizedFormat';
+import isBetween from 'dayjs/plugin/isBetween';
+import 'dayjs/locale/es';
+import { showTask } from '@/composables/showTask';
 
 dayjs.extend(relativeTime);
-dayjs.extend(LocalizedFormat)
+dayjs.extend(LocalizedFormat);
 dayjs.extend(isBetween);
-dayjs.locale('es')
+dayjs.locale('es');
 
+const { formatDate } = showTask();
 
-const { taskFilter, formatDate, changeStatus, deleteTask } = showTask();
+const taskFilter = computed(() => {
+  if (props.filtro != 'all') {
+    return props.tasks.filter((el) => el.status === props.filtro);
+  }
+
+  return props.tasks;
+});
+
+interface Props {
+  tasks: Task[];
+  filtro: string;
+}
+
+const props = defineProps<Props>();
+
+const emit = defineEmits<{
+  changeStatus: [id: string];
+  deleteTask: [id: string];
+}>();
+
+const changeStatus = (id: string) => {
+  emit('changeStatus', id);
+};
+
+const deleteTask = (id: string) => {
+  emit('deleteTask', id);
+};
 </script>

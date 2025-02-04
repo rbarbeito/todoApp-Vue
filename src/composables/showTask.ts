@@ -1,5 +1,3 @@
-import { computed } from "vue"
-import type { Task } from "@/interfaces/task.interface"
 
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -16,25 +14,6 @@ dayjs.locale('es')
 export const showTask = () => {
 
 
-  const taskFilter = computed(() => {
-    if (props.filtro != 'all') {
-      return props.tasks.filter(el => el.status === props.filtro)
-    }
-
-    return props.tasks
-  })
-
-  interface Props {
-    tasks: Task[]
-    filtro: string
-  }
-
-  const props = defineProps<Props>()
-
-  const emit = defineEmits<{
-    changeStatus: [id: string],
-    deleteTask: [id: string]
-  }>()
 
   const formatDate = (fecha: string) => {
 
@@ -43,20 +22,10 @@ export const showTask = () => {
       : dayjs(fecha).format('LL')
   }
 
-  const changeStatus = (id: string) => {
-    emit('changeStatus', id)
 
-  }
-
-  const deleteTask = (id: string) => {
-    emit('deleteTask', id)
-  }
 
 
   return {
-    taskFilter,
     formatDate,
-    changeStatus,
-    deleteTask
   }
 }

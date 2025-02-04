@@ -1,0 +1,23 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`<TestComponent /> > should match snapshot 1`] = `
+"<ul class="px-3 mt-3 lg:h-4/6 lg:overflow-y-auto">
+  <li class="p-4 my-6 w-full h-34 rounded-lg bg-gray-50 flex flex-col justify-between">
+    <div class="flex justify-between items-center">
+      <div class="flex flex-col">
+        <h4 class="font-bold">eat</h4>
+        <h6 class="text-gray-400">home</h6>
+      </div>
+      <faicon icon="fa-solid fa-trash" class="text-red-500 cursor-pointer"></faicon>
+    </div>
+    <hr class="my-2">
+    <div class="flex justify-between items-center">
+      <div class="flex flex-row gap-2">
+        <h5 class="font-semibold text-gray-500">1 de febrero de 2025</h5>
+        <h5 class="font-light text-gray-400">13:41</h5>
+      </div>
+      <faicon icon="fa-regular fa-circle-check" class="cursor-pointer text-gray-300"></faicon>
+    </div>
+  </li>
+</ul>"
+`;

@@ -21,7 +21,7 @@ const {
 </script>
 
 <template>
-  <main class="bg-gray-200">
+  <main class="bg-gray-200 w-full min-h-screen flex justify-center lg:h-screen lg:overflow-hidden">
     <div class="w-full lg:w-4/12">
       <h1 class="text-center w- bg-gray-50 p-5 font-bold text-3xl lg:mt-4 lg:rounded-lg">
         todo App
@@ -52,7 +52,7 @@ const {
         v-show="tasks.length"
         @change-status="changeStatus"
         @delete-task="deleteTask"
-        
+
       />
 
       <!-- No tasks -->
@@ -61,12 +61,3 @@ const {
   </main>
 </template>
 
-<style scoped lang="sass">
-
-main
-  width: 100vw
-  height: 100vh
-  display: flex
-  justify-content: center
-  overflow: hidden
-</style>
